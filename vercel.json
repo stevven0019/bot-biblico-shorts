@@ -1,0 +1,52 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/index.js",
+      "use": "@vercel/node",
+      "config": {
+        "maxDuration": 300,
+        "memory": 3008
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/index.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/api/index.js"
+    }
+  ],
+  "crons": [
+    {
+      "path": "/api/generate?slot=1",
+      "schedule": "0 11 * * *"
+    },
+    {
+      "path": "/api/generate?slot=2", 
+      "schedule": "0 14 * * *"
+    },
+    {
+      "path": "/api/generate?slot=3",
+      "schedule": "0 17 * * *"
+    },
+    {
+      "path": "/api/generate?slot=4",
+      "schedule": "0 20 * * *"
+    },
+    {
+      "path": "/api/generate?slot=5",
+      "schedule": "0 23 * * *"
+    },
+    {
+      "path": "/api/generate?slot=6",
+      "schedule": "0 2 * * *"
+    }
+  ],
+  "env": {
+    "TZ": "America/Mexico_City"
+  }
+}
